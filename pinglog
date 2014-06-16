@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function usage ()
+{
+  echo "Usage:"
+  echo "    $0 <IP>"
+  echo "OR"
+  echo "    $0 <IP> | tee mylog.txt"
+}
+
+if [ $# -ne 1 ]; then
+  usage
+  exit 127
+fi
+
+IP=$1
+
+while :; do ping -c 1 -W 1 $IP >/dev/null || date; sleep 1; done
